@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const generatePass = (length, complexity)=>{
     const easyChars = 'abcdefghijklmnopqrstuvwxyz'; 
@@ -28,9 +28,14 @@ const generatePass = (length, complexity)=>{
 
 export const PasswordGenerator = () =>{
     const [ password, setPassword ] = useState('');
-    const [ complexity, setComplexity ] = useState('Easy');
+    const [ complexity, setComplexity ] = useState('Tough');
     const [ length, setLength ] = useState('8');
     const [ copied, setCopied ] = useState(false);
+
+    useEffect(()=>{
+        const initialPassword = generatePass(length, complexity);
+        setPassword(initialPassword);
+    },[]);
 
     const handleGenerate = () => {
         const newPassword = generatePass(length,complexity);
@@ -69,13 +74,7 @@ export const PasswordGenerator = () =>{
         <label className="block text-left pl-2 mt-5 mb-1 text-sm font-semibold text-gray-700 ml-4"> Password Length </label>
         
         <select className="mb-4 w-11/12 p-2 border border-gray-300 rounded-md focus:outline-none" value={length} onChange={(e)=>{ setLength(e.target.value)} } name="PassLength" >
-          <option value="1"> 1 </option>
-          <option value="2"> 2 </option>
-          <option value="3"> 3 </option>
-          <option value="4"> 4 </option>
-          <option value="5"> 5 </option>
-          <option value="6"> 6 </option>
-          <option value="7"> 7 </option>
+          
           <option value="8"> 8 </option>
           <option value="9"> 9 </option>
           <option value="10"> 10 </option>
@@ -84,6 +83,11 @@ export const PasswordGenerator = () =>{
           <option value="13"> 13 </option>
           <option value="14"> 14 </option>
           <option value="15"> 15 </option>
+          <option value="16"> 16 </option>
+          <option value="17"> 17 </option>
+          <option value="18"> 18 </option>
+          <option value="19"> 19 </option>
+          <option value="20"> 20 </option>
         </select>
       <br />
 
